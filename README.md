@@ -106,4 +106,4 @@ Bu proje MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için `LICENSE` d
 
 ---
 
-Güvenliğinizi artırmak için vscanner'ı kullanın!
+Web güvenliğinizi güçlendirin, vscanner ile korunun!
