@@ -1,6 +1,6 @@
 # vscanner
 
-![vscanner Logo](https://via.placeholder.com/150)
+![vscanner Logo](images/vscanner_logo.jpg)
 
 **vscanner**, web uygulamalarının güvenliğini test etmek için kullanılan yenilikçi bir araçtır. OWASP ZAP (Zed Attack Proxy) ile entegre çalışarak web sitelerini tarar ve güvenlik açıklarını raporlar. Güvenliğinizi bir adım öteye taşıyın!
 
@@ -15,10 +15,10 @@
 
 ## 🚀 Özellikler
 
-- **🔍 Derinlemesine Tarama**: Belirtilen URL üzerinde kapsamlı güvenlik taraması yapar.
+- **🔍 Derinlemesine Tarama**: Belirtilen URL üzerinde kapsamlı güvenlik taraması yapın.
 - **📊 Anlık İlerleme Takibi**: Tarama ilerlemesini gerçek zamanlı olarak izleyin.
-- **📄 Detaylı PDF Raporları**: Tarama sonuçlarını PDF formatında indirilebilir rapor olarak sunar.
-- **⚠️ Risk Analizi**: Bulunan güvenlik açıklarını risk seviyelerine göre sınıflandırır.
+- **📄 Detaylı PDF Raporları**: Tarama sonuçlarını PDF formatında indirilebilir rapor olarak alabilirsiniz.
+- **⚠️ Risk Analizi**: Bulunan güvenlik açıklarını risk seviyelerine göre sınıflandırın.
 - **🔒 Güvenli ve Hızlı**: Hızlı tarama yetenekleriyle güvenliğinizi artırın.
 
 ---
@@ -106,4 +106,4 @@ Bu proje MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için `LICENSE` d
 
 ---
 
-Güvenliğinizi artırmak için vscanner'ı kullanın!
+Web güvenliğinizi güçlendirin, vscanner ile korunun!
