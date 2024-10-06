@@ -9,6 +9,9 @@ from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.lib.fonts import addMapping
 from datetime import datetime
 from urllib.parse import urlparse, urlunparse
 import threading
@@ -23,10 +26,14 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # ZAP bağlantı ayarları
-ZAP_API_KEY = '8grh8i5jvrl1pjt46k5grsq0n5'
+ZAP_API_KEY = '75intbacd6brpl8g34pioch7nb'
 ZAP_ADDRESS = '127.0.0.1'
 ZAP_PORT = 8080
 ZAP_PROXY = f'http://{ZAP_ADDRESS}:{ZAP_PORT}'
+
+# Türkçe karakter desteği için font ekleme
+pdfmetrics.registerFont(TTFont('DejaVuSans', 'DejaVuSans.ttf'))
+addMapping('DejaVuSans', 0, 0, 'DejaVuSans')
 
 def is_zap_running():
     try:
@@ -70,11 +77,12 @@ def create_pdf(alerts, target_url, scan_port):
     elements = []
 
     styles = getSampleStyleSheet()
-    styles.add(ParagraphStyle(name='Small', fontSize=7, leading=8))
-    styles.add(ParagraphStyle(name='Header', fontSize=14, alignment=1))
+    styles.add(ParagraphStyle(name='Small', fontName='DejaVuSans', fontSize=8, leading=10))
+    styles.add(ParagraphStyle(name='Header', fontName='DejaVuSans', fontSize=16, alignment=1, spaceAfter=12))
+    styles.add(ParagraphStyle(name='SubHeader', fontName='DejaVuSans', fontSize=12, alignment=1, spaceAfter=8))
     
     elements.append(Paragraph(f"Tarama Sonuçları: {target_url}", styles['Header']))
-    elements.append(Paragraph(f"Tarama Portu: {scan_port}", styles['Normal']))
+    elements.append(Paragraph(f"Tarama Portu: {scan_port}", styles['SubHeader']))
     elements.append(Spacer(1, 0.25*inch))
     
     data = [['Risk Seviyesi', 'Uyarı', 'URL', 'Açıklama']]
@@ -88,19 +96,19 @@ def create_pdf(alerts, target_url, scan_port):
 
     table = Table(data, colWidths=[1*inch, 2*inch, 3*inch, 4*inch])
     table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#4a4a4a')),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, 0), 8),
+        ('FONTNAME', (0, 0), (-1, 0), 'DejaVuSans'),
+        ('FONTSIZE', (0, 0), (-1, 0), 10),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.HexColor('#f2f2f2')),
         ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
-        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
-        ('FONTSIZE', (0, 1), (-1, -1), 7),
-        ('TOPPADDING', (0, 1), (-1, -1), 3),
-        ('BOTTOMPADDING', (0, 1), (-1, -1), 3),
-        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+        ('FONTNAME', (0, 1), (-1, -1), 'DejaVuSans'),
+        ('FONTSIZE', (0, 1), (-1, -1), 8),
+        ('TOPPADDING', (0, 1), (-1, -1), 6),
+        ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
         ('VALIGN', (0, 0), (-1, -1), 'TOP')
     ]))
 
