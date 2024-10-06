@@ -15,10 +15,10 @@
 
 ## 🚀 Özellikler
 
-- **🔍 Derinlemesine Tarama**: Belirtilen URL üzerinde kapsamlı güvenlik taraması yapar.
+- **🔍 Derinlemesine Tarama**: Belirtilen URL üzerinde kapsamlı güvenlik taraması yapın.
 - **📊 Anlık İlerleme Takibi**: Tarama ilerlemesini gerçek zamanlı olarak izleyin.
-- **📄 Detaylı PDF Raporları**: Tarama sonuçlarını PDF formatında indirilebilir rapor olarak sunar.
-- **⚠️ Risk Analizi**: Bulunan güvenlik açıklarını risk seviyelerine göre sınıflandırır.
+- **📄 Detaylı PDF Raporları**: Tarama sonuçlarını PDF formatında indirilebilir rapor olarak alabilirsiniz.
+- **⚠️ Risk Analizi**: Bulunan güvenlik açıklarını risk seviyelerine göre sınıflandırın.
 - **🔒 Güvenli ve Hızlı**: Hızlı tarama yetenekleriyle güvenliğinizi artırın.
 
 ---
