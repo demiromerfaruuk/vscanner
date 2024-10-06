@@ -48,7 +48,7 @@
 
 3. **Gerekli Python Paketlerini Yükleyin**:
    ```bash
-   pip install Flask Flask-SocketIO requests reportlab zapv2
+   pip install Flask Flask-SocketIO requests reportlab python-owasp-zap-v2.4
    ```
 
 4. **OWASP ZAP'i Başlatın**:
