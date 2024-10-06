@@ -33,7 +33,7 @@
 
 1. **Proje Dosyalarını İndirin**:
    ```bash
-   git clone https://github.com/kullanici/vscanner.git
+   git clone https://github.com/demiromerfaruuk/vscanner.git
    cd vscanner
    ```
 
