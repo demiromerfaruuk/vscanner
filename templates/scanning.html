@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vscanner - Tarama Devam Ediyor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="highlight">v</span>scanner</h1>
+            <p class="subtitle">Tarama Devam Ediyor</p>
+        </header>
+        <main>
+            <p>{{ target_url }} için tarama devam ediyor...</p>
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+            <p id="progress-text">0%</p>
+        </main>
+        <footer>
+            <p>&copy; 2024 vscanner. Tüm hakları saklıdır.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+:root {
+    --primary-color: #00a8ff;
+    --secondary-color: #192a56;
+    --background-color: #f1f2f6;
+    --text-color: #2f3640;
+    --alert-high: #e74c3c;
+    --alert-medium: #f39c12;
+    --alert-low: #3498db;
+    --alert-info: #2ecc71;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 3em;
+    color: var(--secondary-color);
+}
+
+.highlight {
+    color: var(--primary-color);
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+.scan-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+input[type="url"] {
+    width: 60%;
+    padding: 12px;
+    font-size: 1em;
+    border: 2px solid var(--secondary-color);
+    border-radius: 4px 0 0 4px;
+}
+
+.btn {
+    padding: 12px 24px;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0097e6;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #273c75;
+}
+
+.results-container {
+    margin-top: 40px;
+}
+
+.alert-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.alert-item {
+    background-color: #f8f9fa;
+    border-left: 4px solid #3498db;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.alert-item strong {
+    color: #2c3e50;
+}
+
+.alert-risk {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.risk-high { 
+    color: #e74c3c; 
+    border-left: 5px solid var(--alert-high); 
+}
+
+.risk-medium { 
+    color: #f39c12; 
+    border-left: 5px solid var(--alert-medium); 
+}
+
+.risk-low { 
+    color: #2ecc71; 
+    border-left: 5px solid var(--alert-low); 
+}
+
+.risk-informational { 
+    color: #3498db; 
+    border-left: 5px solid var(--alert-info); 
+}
+
+.risk-level {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 10px;
+}
+
+.url {
+    font-style: italic;
+    color: var(--primary-color);
+}
+
+.button {
+    display: inline-block;
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--text-color);
+}
+
+.progress-bar {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.progress {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+    background-color: #3498db;
+    transition: height 0.5s ease;
+    animation: wave 2s infinite linear;
+}
+
+.progress::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-color: rgba(0, 168, 255, 0.5);
+    border-radius: 45%;
+    animation: wave 2s infinite linear;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    50% {
+        transform: translateX(-25%) translateY(10%);
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+#progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: #fff;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .scan-form {
+        flex-direction: column;
+    }
+
+    input[type="url"] {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+
+    .btn {
+        width: 100%;
+        border-radius: 4px;
+    }
+}

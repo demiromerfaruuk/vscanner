@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vscanner - Tarama Sonuçları</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="highlight">v</span>scanner</h1>
+            <p class="subtitle">Tarama Sonuçları</p>
+            <div class="alert-summary">
+                <p>Toplam Uyarı Sayısı: {{ alerts|length }}</p>
+                <p>Yüksek Risk: {{ alerts|selectattr('risk', 'equalto', 'High')|list|length }}</p>
+                <p>Orta Risk: {{ alerts|selectattr('risk', 'equalto', 'Medium')|list|length }}</p>
+                <p>Düşük Risk: {{ alerts|selectattr('risk', 'equalto', 'Low')|list|length }}</p>
+                <p>Bilgilendirme: {{ alerts|selectattr('risk', 'equalto', 'Informational')|list|length }}</p>
+            </div>
+            {% if pdf_available %}
+                <a href="{{ url_for('download_pdf', filename=pdf_filename) }}" class="button">PDF İndir</a>
+            {% endif %}
+        </header>
+        <main>
+            <h2>Bulunan Uyarılar</h2>
+            <ul class="alert-list">
+            {% if alerts %}
+                {% for alert in alerts %}
+                    <li class="alert-item">
+                        <p><span class="alert-risk risk-{{ alert.risk.lower() }}">{{ alert.risk }}</span>: <strong>{{ alert.alert }}</strong></p>
+                        <p><strong>URL:</strong> {{ alert.url }}</p>
+                        <p><strong>Açıklama:</strong> {{ alert.description }}</p>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="alert-item">Herhangi bir uyarı bulunamadı.</li>
+            {% endif %}
+            </ul>
+        </main>
+        <footer>
+            <p>&copy; 2024 vscanner. Tüm hakları saklıdır.</p>
+        </footer>
+    </div>
+</body>
+</html>
