@@ -1,13 +1,29 @@
+# vscanner
+
 ![vscanner Logo](images/vscanner_logo.jpg)
 
 **vscanner**, web uygulamalarının güvenliğini test etmek için kullanılan yenilikçi bir araçtır. OWASP ZAP (Zed Attack Proxy) ile entegre çalışarak web sitelerini tarar ve güvenlik açıklarını raporlar. Güvenliğinizi bir adım öteye taşıyın!
 
-![Terminal Komutu](images/zap_start.jpg)
-![Terminal Komutu](images/app_start.jpg)
-![Terminal Komutu](images/vscanner_index.jpg)
-![Terminal Komutu](images/vscanner_scanning.jpg)
-![Terminal Komutu](images/finish_scanning.jpg)
-![Terminal Komutu](images/results_scanning.jpg)
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <a href="images/zap_start.jpg" target="_blank">
+        <img src="images/zap_start.jpg" alt="Terminal Komutu" style="width: 48%;">
+    </a>
+    <a href="images/app_start.jpg" target="_blank">
+        <img src="images/app_start.jpg" alt="Terminal Komutu" style="width: 48%;">
+    </a>
+    <a href="images/vscanner_index.jpg" target="_blank">
+        <img src="images/vscanner_index.jpg" alt="Terminal Komutu" style="width: 48%;">
+    </a>
+    <a href="images/vscanner_scanning.jpg" target="_blank">
+        <img src="images/vscanner_scanning.jpg" alt="Terminal Komutu" style="width: 48%;">
+    </a>
+    <a href="images/finish_scanning.jpg" target="_blank">
+        <img src="images/finish_scanning.jpg" alt="Terminal Komutu" style="width: 48%;">
+    </a>
+    <a href="images/results_scanning.jpg" target="_blank">
+        <img src="images/results_scanning.jpg" alt="Terminal Komutu" style="width: 48%;">
+    </a>
+</div>
 
 ---
 
