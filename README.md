@@ -1,15 +1,15 @@
-# vscanner
-
 ![vscanner Logo](images/vscanner_logo.jpg)
 
 **vscanner**, web uygulamalarının güvenliğini test etmek için kullanılan yenilikçi bir araçtır. OWASP ZAP (Zed Attack Proxy) ile entegre çalışarak web sitelerini tarar ve güvenlik açıklarını raporlar. Güvenliğinizi bir adım öteye taşıyın!
 
-![Terminal Komutu](images/zap_start.jpg)
-![Terminal Komutu](images/app_start.jpg)
-![Terminal Komutu](images/vscanner_index.jpg)
-![Terminal Komutu](images/vscanner_scanning.jpg)
-![Terminal Komutu](images/finish_scanning.jpg)
-![Terminal Komutu](images/results_scanning.jpg)
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <img src="images/zap_start.jpg" alt="Terminal Komutu" style="width: 48%; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="images/app_start.jpg" alt="Terminal Komutu" style="width: 48%; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="images/vscanner_index.jpg" alt="Terminal Komutu" style="width: 48%; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="images/vscanner_scanning.jpg" alt="Terminal Komutu" style="width: 48%; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="images/finish_scanning.jpg" alt="Terminal Komutu" style="width: 48%; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="images/results_scanning.jpg" alt="Terminal Komutu" style="width: 48%; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+</div>
 
 ---
 
@@ -35,7 +35,7 @@
 
 1. **Proje Dosyalarını İndirin**:
    ```bash
-   git clone https://github.com/kullanici/vscanner.git
+   git clone https://github.com/demiromerfaruuk/vscanner.git
    cd vscanner
    ```
 
@@ -48,7 +48,7 @@
 
 3. **Gerekli Python Paketlerini Yükleyin**:
    ```bash
-   pip install Flask Flask-SocketIO requests reportlab zapv2
+   pip install Flask Flask-SocketIO requests reportlab python-owasp-zap-v2.4
    ```
 
 4. **OWASP ZAP'i Başlatın**:
