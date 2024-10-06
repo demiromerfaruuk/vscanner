@@ -1,6 +1,6 @@
 # vscanner
 
-![vscanner Logo](https://via.placeholder.com/150)
+![vscanner Logo](images/vscanner_logo.jpg)
 
 **vscanner**, web uygulamalarının güvenliğini test etmek için kullanılan yenilikçi bir araçtır. OWASP ZAP (Zed Attack Proxy) ile entegre çalışarak web sitelerini tarar ve güvenlik açıklarını raporlar. Güvenliğinizi bir adım öteye taşıyın!
 
