@@ -1,6 +1,6 @@
 # 🌐 **vscanner - Web Güvenlik Tarayıcısı**
 
-![vscanner logo](https://via.placeholder.com/600x200.png?text=vscanner+Logo) <!-- Logo için gerçek bir URL ekleyin -->
+![vscanner logo](images/vscanner_logo.jpg)
 
 vscanner, web uygulamalarının güvenliğini taramak için geliştirilmiş güçlü bir araçtır. ZAP (Zed Attack Proxy) ile entegre çalışarak, hedef URL'lerdeki güvenlik açıklarını tespit eder ve sonuçları PDF formatında raporlar.
 
