@@ -69,12 +69,6 @@ Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
 
 ---
 
-## 📞 **İletişim**
-
-Herhangi bir sorunuz veya geri bildiriminiz varsa, lütfen [email@example.com](mailto:email@example.com) adresi üzerinden bizimle iletişime geçin.
-
----
-
 **vscanner ile web güvenliğinizi artırın!** 🔒
 
 ![Security Image](images/results_scanning.jpg)
