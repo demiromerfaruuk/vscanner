@@ -8,10 +8,15 @@ vscanner, web uygulamalarının güvenliğini taramak için geliştirilmiş gü�
 
 ## 🚀 **Özellikler**
 
-- **🔍 Güvenlik Taraması:** Hedef URL'lerde kapsamlı güvenlik taraması yapar.
-- **🌐 Açık Port Tespiti:** Hedef sistemdeki açık portları tespit eder.
-- **📄 PDF Raporlama:** Tarama sonuçlarını profesyonel bir PDF raporu olarak indirmenizi sağlar.
-- **📊 Gerçek Zamanlı Güncellemeler:** Tarama sürecinde anlık durum güncellemeleri alırsınız.
+- **🔍 Kapsamlı Güvenlik Taraması:** Hedef URL'lerdeki potansiyel güvenlik açıklarını tespit etmek için ZAP'ın güçlü tarama motorunu kullanır.
+- **🌐 Açık Port Tespiti:** Hedef sistemdeki açık portları belirleyerek, olası saldırı yüzeylerini analiz eder.
+- **📄 Profesyonel PDF Raporlama:** Tarama sonuçlarını detaylı bir şekilde sunan, özelleştirilebilir PDF raporları oluşturur.
+- **📊 Gerçek Zamanlı Durum Güncellemeleri:** Tarama sürecinde kullanıcıya anlık ilerleme ve durum güncellemeleri sağlar.
+- **⚙️ Çoklu Protokol Desteği:** HTTP, HTTPS ve diğer protokoller üzerinden tarama yapabilme yeteneği.
+- **🔔 Uyarı ve Risk Yönetimi:** Tespit edilen güvenlik açıklarını risk seviyelerine göre sıralar ve kullanıcıya detaylı bilgi sunar.
+- **📈 Kullanıcı Dostu Arayüz:** Basit ve sezgisel bir arayüz ile kullanıcıların tarama işlemlerini kolayca gerçekleştirmesine olanak tanır.
+- **🔒 Güvenlik ve Gizlilik:** Kullanıcı verilerini koruma ve güvenli bir tarama deneyimi sağlama amacıyla tasarlanmıştır.
+
 
 ---
 
