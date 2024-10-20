@@ -11,12 +11,14 @@
     <div class="container">
         <header>
             <h1><span class="highlight">v</span>scanner</h1>
-            <p class="subtitle">Profesyonel Web Güvenlik Tarayıcısı</p>
+            <p class="subtitle">Web Güvenlik Tarayıcısı</p>
         </header>
         <main>
             <form method="POST" class="scan-form">
-                <input type="text" name="url" placeholder="example.com veya tam URL" required>
-                <input type="number" name="port" placeholder="Port (varsayılan: 80)" value="80">
+                <div class="form-group">
+                    <input type="text" name="url" placeholder="example.com veya tam URL" required class="input-domain">
+                    <input type="number" name="port" placeholder="Port (varsayılan: 80)" value="80" class="input-port">
+                </div>
                 <button type="submit" class="btn btn-primary">Güvenlik Taraması Başlat</button>
             </form>
         </main>

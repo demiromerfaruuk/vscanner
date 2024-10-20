@@ -3,6 +3,7 @@ from zapv2 import ZAPv2
 import time
 import requests
 import logging
+import nmap
 from io import BytesIO
 from reportlab.lib.pagesizes import letter, landscape
 from reportlab.lib import colors
@@ -17,6 +18,7 @@ from urllib.parse import urlparse, urlunparse
 import threading
 from flask_socketio import SocketIO
 import json
+import subprocess
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -44,6 +46,35 @@ def is_zap_running():
     except requests.RequestException:
         return False
 
+def start_zap():
+    zap_command = [
+        '/usr/share/zaproxy/zap.sh',
+        '-daemon',
+        '-host', '0.0.0.0',
+        '-port', '8080',
+        '-config', f'api.key={ZAP_API_KEY}'
+    ]
+    subprocess.Popen(zap_command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+def scan_open_ports(target_domain):
+    nm = nmap.PortScanner()
+    nm.scan(target_domain, arguments='-p 21,22,23,25,53,80,110,143,443,3306,5432,6379,27017,3389,445,389,636,88,161,123,137-139,1433,1521,5900,9200,5601,5672,2181,9092,2375-2376')
+    
+    open_ports = []
+    for host in nm.all_hosts():
+        for proto in nm[host].all_protocols():
+            lport = nm[host][proto].keys()
+            for port in lport:
+                if nm[host][proto][port]['state'] == 'open':
+                    open_ports.append({
+                        'port': port,
+                        'protocol': proto,
+                        'service': nm[host][proto][port]['name'],
+                        'state': nm[host][proto][port]['state']
+                    })
+    
+    return open_ports
+
 def truncate_text(text, max_length=200):
     return (text[:max_length] + '...') if len(text) > max_length else text
 
@@ -69,7 +100,7 @@ def sort_alerts(alerts):
     risk_order = {'High': 4, 'Medium': 3, 'Low': 2, 'Informational': 1}
     return sorted(alerts, key=lambda x: risk_order.get(x['risk'], 0), reverse=True)
 
-def create_pdf(alerts, target_url, scan_port):
+def create_pdf(alerts, target_url, scan_port, open_ports):
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=landscape(letter), 
                             rightMargin=0.5*inch, leftMargin=0.5*inch, 
@@ -80,15 +111,42 @@ def create_pdf(alerts, target_url, scan_port):
     styles.add(ParagraphStyle(name='Small', fontName='DejaVuSans', fontSize=8, leading=10))
     styles.add(ParagraphStyle(name='Header', fontName='DejaVuSans', fontSize=16, alignment=1, spaceAfter=12))
     styles.add(ParagraphStyle(name='SubHeader', fontName='DejaVuSans', fontSize=12, alignment=1, spaceAfter=8))
-    
+    styles.add(ParagraphStyle(name='RiskHigh', fontName='DejaVuSans', fontSize=8, textColor=colors.red))
+    styles.add(ParagraphStyle(name='RiskMedium', fontName='DejaVuSans', fontSize=8, textColor=colors.orange))
+    styles.add(ParagraphStyle(name='RiskLow', fontName='DejaVuSans', fontSize=8, textColor=colors.green))
+    styles.add(ParagraphStyle(name='RiskInfo', fontName='DejaVuSans', fontSize=8, textColor=colors.blue))
+
     elements.append(Paragraph(f"Tarama Sonuçları: {target_url}", styles['Header']))
     elements.append(Paragraph(f"Tarama Portu: {scan_port}", styles['SubHeader']))
+    
+    # Açık portları ekleme
+    elements.append(Paragraph("Açık Portlar:", styles['SubHeader']))
+    for port in open_ports:
+        elements.append(Paragraph(f"Port: {port['port']}, Protokol: {port['protocol']}, Servis: {port['service']}, Durum: {port['state']}", styles['Small']))
+    elements.append(Spacer(1, 0.25*inch))
+    
+    # Toplam sonuç sayılarını ekleme
+    total_alerts = len(alerts)
+    high_risk_alerts = sum(1 for alert in alerts if alert.get('risk') == 'High')
+    medium_risk_alerts = sum(1 for alert in alerts if alert.get('risk') == 'Medium')
+    low_risk_alerts = sum(1 for alert in alerts if alert.get('risk') == 'Low')
+    informational_alerts = sum(1 for alert in alerts if alert.get('risk') == 'Informational')
+    
+    elements.append(Paragraph(f"Toplam Uyarı Sayısı: {total_alerts}", styles['SubHeader']))
+    elements.append(Paragraph(f"Yüksek Risk: {high_risk_alerts}", styles['RiskHigh']))
+    elements.append(Paragraph(f"Orta Risk: {medium_risk_alerts}", styles['RiskMedium']))
+    elements.append(Paragraph(f"Düşük Risk: {low_risk_alerts}", styles['RiskLow']))
+    elements.append(Paragraph(f"Bilgilendirme: {informational_alerts}", styles['RiskInfo']))
     elements.append(Spacer(1, 0.25*inch))
     
     data = [['Risk Seviyesi', 'Uyarı', 'URL', 'Açıklama']]
     for alert in alerts:
+        risk_style = 'RiskHigh' if alert.get('risk') == 'High' else \
+                     'RiskMedium' if alert.get('risk') == 'Medium' else \
+                     'RiskLow' if alert.get('risk') == 'Low' else \
+                     'RiskInfo'
         data.append([
-            Paragraph(alert.get('risk', ''), styles['Small']),
+            Paragraph(alert.get('risk', ''), styles[risk_style]),
             Paragraph(alert.get('alert', ''), styles['Small']),
             Paragraph(truncate_text(alert.get('url', '')), styles['Small']),
             Paragraph(truncate_text(alert.get('description', '')), styles['Small'])
@@ -145,9 +203,13 @@ def run_zap_scan(target_url, scan_port):
         
         logger.info("Retrieving alerts")
         alerts = sort_alerts(zap.core.alerts())
-        pdf = create_pdf(alerts, target_url, scan_port)
         
+        # Port tarama işlemini gerçekleştir
         domain = urlparse(target_url).netloc
+        open_ports = scan_open_ports(domain)
+        
+        pdf = create_pdf(alerts, target_url, scan_port, open_ports)
+        
         current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
         pdf_filename = f"{domain}_{current_time}.pdf"
         
@@ -156,8 +218,10 @@ def run_zap_scan(target_url, scan_port):
         
         logger.info("Scan completed successfully")
         alerts_json = json.dumps(alerts)
+        open_ports_json = json.dumps(open_ports)
         socketio.emit('scan_complete', {
             'alerts': alerts_json,
+            'open_ports': open_ports_json,
             'pdf_filename': pdf_filename
         }, namespace='/')
     except Exception as e:
@@ -223,4 +287,7 @@ def download_pdf(filename):
         return jsonify({"error": "PDF indirilirken bir hata oluştu"}), 500
 
 if __name__ == '__main__':
+    if not is_zap_running():
+        start_zap()
+        time.sleep(5)  # ZAP'ın başlaması için biraz bekle
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True)

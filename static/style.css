@@ -36,6 +36,7 @@ header {
 h1 {
     font-size: 3em;
     color: var(--secondary-color);
+    margin-bottom: 10px;
 }
 
 .highlight {
@@ -45,20 +46,37 @@ h1 {
 .subtitle {
     font-size: 1.2em;
     color: var(--text-color);
+    margin-bottom: 20px;
 }
 
 .scan-form {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 40px;
 }
 
-input[type="url"] {
-    width: 60%;
+.form-group {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.input-domain, .input-port {
     padding: 12px;
     font-size: 1em;
     border: 2px solid var(--secondary-color);
-    border-radius: 4px 0 0 4px;
+    border-radius: 4px;
+}
+
+.input-domain {
+    width: 70%;
+    margin-right: 10px;
+}
+
+.input-port {
+    width: 15%;
 }
 
 .btn {
@@ -92,6 +110,35 @@ input[type="url"] {
     margin-top: 40px;
 }
 
+.alert-summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.alert-summary p {
+    margin: 5px 0;
+}
+
+.port-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.port-item {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+}
+
+.port-item p {
+    margin: 5px 0;
+}
+
 .alert-list {
     list-style-type: none;
     padding: 0;
@@ -99,11 +146,10 @@ input[type="url"] {
 
 .alert-item {
     background-color: #f8f9fa;
-    border-left: 4px solid #3498db;
-    margin-bottom: 20px;
     padding: 15px;
-    border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
 
 .alert-item strong {
@@ -133,20 +179,6 @@ input[type="url"] {
 .risk-informational { 
     color: #3498db; 
     border-left: 5px solid var(--alert-info); 
-}
-
-.risk-level {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.description {
-    margin-bottom: 10px;
-}
-
-.url {
-    font-style: italic;
-    color: var(--primary-color);
 }
 
 .button {
@@ -225,14 +257,108 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .scan-form {
+    .form-group {
         flex-direction: column;
     }
 
-    input[type="url"] {
+    .input-domain, .input-port {
         width: 100%;
         margin-bottom: 10px;
+    }
+
+    .btn {
+        width: 100%;
         border-radius: 4px;
+    }
+}
+
+/* Yeni Eklenen Stiller */
+
+/* Header Animasyonu */
+header h1 {
+    animation: fadeInDown 1s ease-in-out;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Buton Animasyonu */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease;
+}
+
+.btn:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Uyarılar ve Portlar Animasyonu */
+.alert-item, .port-item {
+    animation: fadeInUp 0.5s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Yapay Zeka Teması */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 168, 255, 0.1) 25%, transparent 25%) -50px 0,
+                linear-gradient(225deg, rgba(0, 168, 255, 0.1) 25%, transparent 25%) -50px 0,
+                linear-gradient(315deg, rgba(0, 168, 255, 0.1) 25%, transparent 25%),
+                linear-gradient(45deg, rgba(0, 168, 255, 0.1) 25%, transparent 25%);
+    background-size: 100px 100px;
+    z-index: -1;
+}
+
+/* Footer Animasyonu */
+footer {
+    animation: fadeInUp 1s ease-in-out;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .form-group {
+        flex-direction: column;
+    }
+
+    .input-domain, .input-port {
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     .btn {
