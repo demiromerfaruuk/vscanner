@@ -72,4 +72,5 @@ Herhangi bir sorunuz veya geri bildiriminiz varsa, lütfen [email@example.com](m
 
 **vscanner ile web güvenliğinizi artırın!** 🔒
 
-![Security Image](https://via.placeholder.com/600x300.png?text=Web+Security) <!-- Güvenlik ile ilgili bir görsel ekleyin -->
+![Security Image](images/results_scanning.jpg
+
