@@ -31,21 +31,42 @@ vscanner, web uygulamalarının güvenliğini taramak için geliştirilmiş gü�
 
 ---
 
-## 🛠️ **Kurulum**
+## 🛠️ **Kurulum ve Başlatma Aşamaları**
 
-1. Gerekli kütüphaneleri yükleyin:
+1. **Python Sanal Ortamı Oluşturma:**
+   Python sanal ortamı, projelerinizin bağımlılıklarını izole etmek için kullanılır. Aşağıdaki komut ile yeni bir sanal ortam oluşturun:
    ```bash
-   pip install flask flask-socketio zapv2 python-nmap reportlab
+   python -m venv venv
    ```
 
-2. ZAP'ı kurun ve çalıştırın. ZAP'ın API anahtarını ve adresini ayarlayın.
+2. **Sanal Ortamı Aktif Etme:**
+   Oluşturduğunuz sanal ortamı aktif hale getirmek için aşağıdaki komutları kullanın:
+   - **Windows:**
+     ```bash
+     venv\Scripts\activate
+     ```
+   - **macOS/Linux:**
+     ```bash
+     source venv/bin/activate
+     ```
 
-3. Uygulamayı başlatın:
+3. **Gerekli Kütüphaneleri Yükleme:**
+   Sanal ortam aktifken, gerekli kütüphaneleri yüklemek için aşağıdaki komutu çalıştırın:
+   ```bash
+   pip install flask flask-socketio zapv2 python-nmap reportlab requests
+   ```
+
+4. **ZAP'ı Kurma ve Çalıştırma:**
+   ZAP (Zed Attack Proxy) uygulamasını indirip kurun. ZAP'ı başlatın ve API anahtarınızı ve adresinizi ayarlayın.
+
+5. **Uygulamayı Başlatma:**
+   Uygulamanızı başlatmak için aşağıdaki komutu çalıştırın:
    ```bash
    python app.py
    ```
 
-4. Tarayıcınızda `http://127.0.0.1:5000` adresine gidin.
+6. **Tarayıcıda Uygulamayı Açma:**
+   Tarayıcınızda `http://127.0.0.1:5000` adresine gidin. Buradan tarama işlemlerini başlatabilirsiniz.
 
 ---
 
